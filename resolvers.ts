@@ -27,15 +27,15 @@ export const resolver: Resolvers = {
   },
   Person: {
     favoriteFood: async (parent, args, ctx, info) => {
-      return getFoodForPerson(parent.id);
+      return getFoodForPerson(String(parent.id));
     },
     dog: async (parent, args, ctx, info) => {
-      return getPersonsDog(parent.id);
+      return getPersonsDog(String(parent.id));
     },
   },
   Dog: {
     favoriteFood: (parent, args, ctx, info) => {
-      return getFoodForDog(parent.id);
+      return getFoodForDog(String(parent.id));
     },
   },
 };

@@ -17,3 +17,10 @@ generates:
     config:
       defaultMapper: DeepPartial<{T}>
       maybeValue: T | undefined
+      customResolverFn: |
+        (
+          parent: TParent & { args?: { [key: string]: unknown } },
+          args: TArgs,
+          context: TContext,
+          info: GraphQLResolveInfo
+        ) => Promise<TResult & {args?: TArgs}> | TResult & {args?: TArgs}

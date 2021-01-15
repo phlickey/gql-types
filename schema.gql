@@ -1,0 +1,28 @@
+type Food {
+  id: ID!
+  name: String!
+  calories: Int!
+  tasty: Boolean!
+}
+
+type Dog {
+  id: ID!
+  name: String!
+  age: Int!
+  favoriteFood: Food
+}
+
+type Person {
+  id: ID!
+  firstName: String!
+  middleName: String
+  lastName: String!
+  age: Int!
+  favoriteFood: Food!
+  dog: Dog
+}
+
+type Query {
+  everyone: [Person!]!
+  personById(id: ID!): Person
+}

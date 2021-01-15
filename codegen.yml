@@ -1,0 +1,19 @@
+schema:
+  - ./schema.gql
+generates:
+  ./types.ts:
+    plugins:
+      - typescript
+      - typescript-resolvers
+      - add:
+          content: |
+            export type DeepPartial<T> = {
+              [P in keyof T]?: T[P] extends Array<infer U>
+              ? Array<DeepPartial<U>>
+              : T[P] extends ReadonlyArray<infer U>
+              ? ReadonlyArray<DeepPartial<U>>
+              : DeepPartial<T[P]>
+            };
+    config:
+      defaultMapper: DeepPartial<{T}>
+      maybeValue: T | undefined
